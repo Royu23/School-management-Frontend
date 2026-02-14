@@ -1,9 +1,9 @@
 import React from 'react'
 
-const AdminRegistration = () => {
+const AdminDetails = () => {
   return (
     <div>AdminRegistration</div>
   )
 }
 
-export default AdminRegistration
+export default AdminDetails

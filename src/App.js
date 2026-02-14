@@ -4,6 +4,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import AdminRoutes from './Routes/AdminRoutes';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import TeacherRoutes from './Routes/TeacherRoutes';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
       <Routes>
      
         <Route path="/admin/*" element={<AdminRoutes />}/>
-     
+        <Route path='/teacher/*' element={<TeacherRoutes />}/>
       </Routes>
       </BrowserRouter>
          <Footer />
