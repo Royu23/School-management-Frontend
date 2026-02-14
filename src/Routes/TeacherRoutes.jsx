@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import TeachersDashboard from '../pages/TeachersDashboard'
 
 const TeacherRoutes = () => {
+ 
+    
+  
   return (
-    <div>
+    <div className='bg-gray-300'>
         <Routes>
-            <Route path='/teacher' element={<TeachersDashboard />}/>
+            <Route path="/teacherDashboard" element={<TeachersDashboard />}/>
         </Routes>
     </div>
   )

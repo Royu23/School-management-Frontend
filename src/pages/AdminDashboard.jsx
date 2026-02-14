@@ -8,7 +8,7 @@ const AdminDashboard = () => {
    navigate("/profile");
     }
    const ViewTeachers=()=>{
-    navigate("/teachersDashboard");
+    navigate("/teacher/teacherDashboard");
    }
    const ViewClasses=()=>{
     navigate("/classDashboard");
@@ -17,13 +17,18 @@ const AdminDashboard = () => {
     navigate("/ptaDashboard");
    }
 
+  //  const AddNewTeachers=()=>{
+
+  //  }
+
   return (
     
     <div>
-        <button onClick={ViewProfile}>Profile</button>
-        <h3>Teachers</h3> <button onClick={ViewTeachers}>View Teachers</button>
-        <h3>Class</h3> <button onClick={ViewClasses}>View Classes</button>
-        <h3>PTA</h3> <button onClick={ViewPTA}>View PTA</button>
+        <button className="bg-blue-500" onClick={ViewProfile}>Profile</button><br/>
+        <label>Teachers</label> <button className="bg-blue-300"onClick={ViewTeachers}>View Teachers</button>
+        {/* <button className="bg-blue-300"onClick={AddNewTeachers}>Add Teacher</button><br/> */}
+        <label>Class</label> <button className="bg-blue-300" onClick={ViewClasses}>View Classes</button><br/>
+        <label>PTA</label> <button className="bg-blue-300" onClick={ViewPTA}>View PTA</button>
     
     </div>
   )

@@ -7,6 +7,19 @@ import Footer from "./components/Footer";
 import TeacherRoutes from './Routes/TeacherRoutes';
 
 function App() {
+
+  //  const[data,setData]=useState([]);
+  
+  //   useEffect(() => {
+  //   fetch('http://127.0.0.1:8000/teacher')               //backend connection api
+  //     .then((res) => res.json())
+  //     .then((data) => setData(data.message)
+  //   );
+  
+  // }, []);
+  // console.log(data,"data accessed from backend");
+  
+  
   return (
     <div className="App">
          <Header />
