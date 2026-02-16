@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import TeacherForm from '../components/TeacherForm';
+import { fetchTeachersData } from '../Redux/Slices/TeacherSlice';
+import { useDispatch } from 'react-redux';
 
 const TeachersDashboard = () => {
   const SchoolUrl=process.env.REACT_APP_API_SCHOOL
-  console.log(SchoolUrl,"env url");
+
+  const dispatch=useDispatch();
 
  const [formvisible, setFormvisible] = useState(false);
 
@@ -12,11 +15,9 @@ const TeachersDashboard = () => {
 
    const[teachers,setTEachers]=useState([]);
   // const[deleteTeacherVariable,setDeleteTeacherFunction]=useState();
-    useEffect(()=>{
-     fetch(`${SchoolUrl}/teacher`)              
-        .then((res) => res.json())
-         .then((data) => setTEachers(data.data)
-       );
+    
+  useEffect(()=>{
+     dispatch(fetchTeachersData());     //from TeacherSlice
     },[]);
    console.log(teachers,"data accessed");
   
