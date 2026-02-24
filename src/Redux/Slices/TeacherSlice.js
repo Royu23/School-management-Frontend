@@ -24,8 +24,17 @@ const TeacherSlice=createSlice({
             },
             setOneTeacherData:(state,action)=>{
                 state.oneTeacherDetailsData=action.payload;
+            },
+            setAddNewTeacherDb:(state,action)=>{
+                state.addNewTeacherToDb=action.payload;
+            },  
+            setEditedTeacherData:(state,action)=>{
+                state.postEditedTeacherDetails=action.payload;
+            },
+            setTeacherLogin:(state,action)=>{
+                state.TeacherLogin=action.payload;
             }
-         
+
     }
  });
  // fetch teachers              
@@ -52,14 +61,45 @@ const TeacherSlice=createSlice({
               
              if(response.data)
                {
-               
-                  dispatch(setOneTeacherData(response.data));
-    
-                 }
+               dispatch(setOneTeacherData(response.data.data));
+               }
            
         } catch (error) {
             dispatch(setError(error));  
         }
     }
- export const{setError,setTeacherData,setMessage,setOneTeacherData}=TeacherSlice.actions;
+    export const AddNewTeacherDb=()=>async(dispatch)=>{
+        try{
+            const response=await axios.post(`${baseUrl}/teacher`)
+        }
+        catch(error){
+            dispatch(setError(error));
+        }
+    }
+    export const postEditedTeacherDetails=({id,formData})=>async(dispatch)=>{
+        try{
+            console.log(id,"edit id in teacherslice");
+            const response=await axios.put(`${baseUrl}/teacher/${id}`,formData)
+            if(response.data){
+                dispatch(setEditedTeacherData(response.data));
+            }
+        }
+        catch(error){
+            dispatch(setError(error));
+        }
+    }
+    export const TeacherLoggedin=(data)=>async(dispatch)=>{
+        try{
+            console.log(data,"dispatch")
+            const response=await axios.post(`${baseUrl}/teacher/login`,data)
+            console.log(response,"login response")
+        }
+        catch(error){
+            dispatch(setError(error));
+        }
+    }
+
+
+
+ export const{setError,setTeacherData,setMessage,setOneTeacherData,setAddNewTeacherDb,setEditedTeacherData,setTeacherLogin}=TeacherSlice.actions;
  export default TeacherSlice.reducer;

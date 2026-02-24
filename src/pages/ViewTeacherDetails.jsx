@@ -25,6 +25,8 @@ console.log(oneTeacherDetail,"oneteacher");
          <h1>Teacher Details</h1>
 
     {oneTeacherDetail ? (
+
+      
       <div>
         <h2>Name: {oneTeacherDetail.data.name}</h2>
         <h2>Class: {oneTeacherDetail.data.standard}</h2>
