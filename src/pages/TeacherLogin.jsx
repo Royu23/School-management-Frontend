@@ -11,14 +11,16 @@ const[TeacherLoginForm,setTeacherLoginForm]=useState({
   
 });
 
-// const DatabaseValues=useSelector((state)=>state.teacher.teacherData);
-//  console.log(DatabaseValues,"valuesss");
+const Teacherdatainfo=useSelector((state)=>state.teacher.teacherData); //teacher=>name of store,teacherData=>name of slice
+ console.log(Teacherdatainfo,"valuesss");
+ const Logininfo=useSelector((state)=>state.teacher.loggedin);
+ console.log(Logininfo,"logindetails");
+ if(Logininfo==true){
+  navigate("/teacher/profile/:loggedteacherId")
+ }
 
-//  const test=DatabaseValues.find((t)=>
-//    t.email===TeacherLoginForm.email);
-//  const teacherIdPassedForLogin=test?._id;
-//  console.log(teacherIdPassedForLogin,"specific value");
 
+  
 
   const Handlechange=(e)=>{
     
@@ -33,18 +35,11 @@ const[TeacherLoginForm,setTeacherLoginForm]=useState({
 
   const Login=()=>{
    dispatch(TeacherLoggedin(TeacherLoginForm));
-  
-   
-//    if(TeacherLoginForm.email===test?.email&& TeacherLoginForm.password===test?.password){
-//    console.log("ok");
-// navigate(`/teacher/profile/${teacherIdPassedForLogin}`);
-//    }
-//  else{
-//    console.log("not");
-//  }
+
+  }
  console.log(TeacherLoginForm.email,"email value");
  console.log(TeacherLoginForm.password,"value password");
-}
+
 return(
        <div>
          <h1>welcome to login</h1>

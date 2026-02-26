@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import { fetchOneTeacherDetails } from '../Redux/Slices/TeacherSlice';
+import TeacherForm from '../components/TeacherForm';
 
 const ViewTeacherDetails = () => {
-// const accessTesting=useSelector((state)=>state.teacher.message);
+
+  // const accessTesting=useSelector((state)=>state.teacher.message);
 // console.log(accessTesting,"testing");
+const[editFormVisibility,setEditFormVisibility]=useState(false);
 const dispatch=useDispatch();
 const oneTeacherDetail=useSelector((store)=>store.teacher.oneTeacherDetailsData);
 console.log(oneTeacherDetail,"oneteacher");
@@ -19,9 +22,17 @@ console.log(oneTeacherDetail,"oneteacher");
          
         },[teacherid]);
        //console.log(teacher,"teacher accessed");
+
+       const EditTeacherDetails=(EditId)=>{
+        setEditFormVisibility(true);
+        console.log(EditId,"editid")
+       }
       
   return (
     <div>
+      {editFormVisibility &&(
+        <TeacherForm onEditBtnClick={()=>setEditFormVisibility(false)}/>
+      )}
          <h1>Teacher Details</h1>
 
     {oneTeacherDetail ? (
@@ -37,7 +48,7 @@ console.log(oneTeacherDetail,"oneteacher");
     ) : (
       <h2>No teacher</h2>
     )}
-    <button >Edit</button>
+    <button onClick={()=>EditTeacherDetails(oneTeacherDetail?._id)}>Edit</button>
     </div>
   )
 }

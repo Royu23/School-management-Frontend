@@ -7,11 +7,12 @@ const initialState={
         teacherData:[],        //for all teachers
         message:null,
         oneTeacherDetailsData:null,
+        loggedin:false
     }
 const TeacherSlice=createSlice({
     name:"Teacher",
     initialState,
-    reducers:{                      //like setFuction in useState
+    reducers:{                      //like setFunction in useState
          setError:(state,action)=>{
               state.errors=action.payload;
          },
@@ -31,9 +32,10 @@ const TeacherSlice=createSlice({
             setEditedTeacherData:(state,action)=>{
                 state.postEditedTeacherDetails=action.payload;
             },
-            setTeacherLogin:(state,action)=>{
-                state.TeacherLogin=action.payload;
-            }
+            setLoggedin:(state,action)=>{
+                state.loggedin=action.payload;
+            },
+          
 
     }
  });
@@ -93,13 +95,26 @@ const TeacherSlice=createSlice({
             console.log(data,"dispatch")
             const response=await axios.post(`${baseUrl}/teacher/login`,data)
             console.log(response,"login response")
+            if(response.data.data.accesstoken){
+                dispatch(setLoggedin(true));
+            }
+            const userdata={
+                username:response.data.data.name,
+                accessToken:response.data.data.accesstoken.token,
+                email:response.data.data.email
+                }
+       localStorage.setItem("userdata",JSON.stringify(userdata));
+       console.log(userdata,"success");
+
         }
         catch(error){
             dispatch(setError(error));
         }
     }
 
+    
 
 
- export const{setError,setTeacherData,setMessage,setOneTeacherData,setAddNewTeacherDb,setEditedTeacherData,setTeacherLogin}=TeacherSlice.actions;
+
+ export const{setError,setTeacherData,setMessage,setOneTeacherData,setAddNewTeacherDb,setEditedTeacherData,setTeacherLogin,setLoggedin}=TeacherSlice.actions;
  export default TeacherSlice.reducer;
